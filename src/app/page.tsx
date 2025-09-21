@@ -6,9 +6,25 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Calendar, User, LogOut } from 'lucide-react'
 import Link from 'next/link'
+import { useEffect } from 'react'
+import { createClient } from '@/lib/supabase'
 
 export default function HomePage() {
   const { user, loading, signOut } = useAuth()
+
+  // Debug: Check environment variables
+  console.log('SUPABASE_URL:', process.env.NEXT_PUBLIC_SUPABASE_URL)
+  console.log('SUPABASE_ANON_KEY:', process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.substring(0, 20) + '...')
+
+  // Debug: Test Supabase connection
+  useEffect(() => {
+    const testConnection = async () => {
+      const supabase = createClient()
+      const { data, error } = await supabase.auth.getSession()
+      console.log('Supabase connection test:', { data, error })
+    }
+    testConnection()
+  }, [])
 
   if (loading) {
     return (

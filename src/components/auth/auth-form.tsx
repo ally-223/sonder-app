@@ -7,17 +7,21 @@ import { createClient } from '@/lib/supabase'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
 export function AuthForm() {
-  const [view, setView] = useState<'sign-in' | 'sign-up'>('sign-in')
+  const [view, setView] = useState<'sign_in' | 'sign_up'>('sign_in')
   const supabase = createClient()
+
+  // Debug: Check if AuthForm is rendering
+  console.log('AuthForm rendering, view:', view)
+  console.log('Supabase client:', supabase)
 
   return (
     <Card className="w-full max-w-md mx-auto">
       <CardHeader>
         <CardTitle>
-          {view === 'sign-in' ? 'Sign In' : 'Sign Up'}
+          {view === 'sign_in' ? 'Sign In' : 'Sign Up'}
         </CardTitle>
         <CardDescription>
-          {view === 'sign-in' 
+          {view === 'sign_in' 
             ? 'Welcome back! Sign in to your account.' 
             : 'Create a new account to get started.'
           }
@@ -44,17 +48,6 @@ export function AuthForm() {
           redirectTo={`${window.location.origin}/auth/callback`}
           magicLink={true}
         />
-        <div className="mt-4 text-center">
-          <button
-            onClick={() => setView(view === 'sign-in' ? 'sign-up' : 'sign-in')}
-            className="text-sm text-muted-foreground hover:text-foreground"
-          >
-            {view === 'sign-in' 
-              ? "Don't have an account? Sign up" 
-              : 'Already have an account? Sign in'
-            }
-          </button>
-        </div>
       </CardContent>
     </Card>
   )

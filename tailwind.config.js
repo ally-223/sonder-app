@@ -51,6 +51,13 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // App-specific colors
+        'app-dark': '#0F0F0F',
+        'app-surface': '#1A1A1A',
+        'app-card': '#2A2A2A',
+        'app-gold': '#FFD700',
+        'app-coral': '#FF6B6B',
+        'app-teal': '#4ECDC4',
       },
       borderRadius: {
         lg: "var(--radius)",
